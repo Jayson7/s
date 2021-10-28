@@ -1,0 +1,312 @@
+{% load static %} {# Load the tag library #} {% load bootstrap5 %} {# Load CSS and JavaScript #} {% bootstrap_css %} {% bootstrap_javascript %} {# Display django.contrib.messages as Bootstrap alerts #} {% bootstrap_messages %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content=" we sell and buy products of any kind with fast delivery included on all services " />
+    <meta name="author" content="jayson" />
+    <meta name="generator" content="Shop" />
+    <title>{% block title %} SHOPERZ- All products {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body>
+    {% block body %}
+    <div class="alert mb-0" role="alert">
+        <div class="row d-flex">
+            <div class="col-sm-6 col-md-6">
+                <div class="phone text-success">
+                    <i class="fa mr-2 fa-phone" aria-hidden="true"></i>
+                    <span>+2348116336975</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="icons text-center">
+                    <i class="fa mr-3 fa-facebook-official" aria-hidden="true"></i>
+                    <i class="fa mr-3 fa-twitter" aria-hidden="true"></i>
+                    <i class="fa mr-3 fa-github" aria-hidden="true"></i>
+                    <i class="fa mr-3 fa-bitbucket" aria-hidden="true"></i>
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand ml-2" href="{% url 'home' %}">SHOP<span>ERZ</span>
+        </a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                    <li class="nav-item mr-5">
+                        <a class="nav-link text-white" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item mr-5">
+              <a class="nav-link text-white" href="#">Track Order</a>
+                    </li>
+                    <li class="nav-item mr-5">
+                        <a class="nav-link text-white" href="#">Store</a>
+                    </li>
+                    <li class="nav-item mr-5">
+                        <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a
+              >
+            </li>
+
+            <li class="nav-item mr-5">
+              <a class="nav-link text-white" href="{% url 'cart' %}"
+                >Cart
+                <i class="fa fa-cart-plus" aria-hidden="true">
+                  <sup class="bg-success sup" style="font-size: 20px"
+                    >{{counter}}</sup
+                  >
+                </i>
+              </a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+
+                    <li class="nav-item mr-5">
+                        <a class="nav-link text-white" href="{% url 'profile' %}">{{request.user}}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'logout' %}"
+                >Logout</a
+              >
+            </li>
+            {% endif %} {% if not request.user.is_authenticated %}
+
+            <li class="nav-item mr-5">
+              <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item mr-5">
+                        <a class="nav-link text-white" href="{% url 'register' %}">Register</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="landing-page mt-5">
+      <div class="d-flex align-items-center justify-content-center">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <img src="{% static 'image/home.png' %}" alt="sorry" />
+          </div>
+          <div class="col-sm-6 col-md-6 mb-5 mt-5">
+            <div class="wrapper px-3 align-items-center">
+              <h1 class="py-2">
+                We sell <span class="text-success">explicit</span> products at
+                affordable price
+              </h1>
+              <h5 class="py-2">Nice product <span>friendly fees</span></h5>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Magnam, blanditiis. lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Debitis, molestias?
+              </p>
+              <div class="col p-4">
+                <div class="btn bg-warning text-dark m-2">Shop Now</div>
+                <div class="btn">Categories</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section1">
+      <div class="row bg-warning">
+        {% if product %} {% for i in product %}
+        <div
+          class="
+            col-sm-6 col-md-4
+            d-flex
+            align-items-center
+            justify-content-center
+          "
+        >
+          <div class="card m-3" style="width: 18rem">
+            <img
+              src="{{i.image.url}}"
+              style="height: 250px"
+              class="card-img-top"
+              alt="sorry"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="d-flex">
+                <p class="text-success mr-3">{{i.discounted_price}}</p>
+                <p>
+                  <strike class="text-danger">{{i.main_price}}</strike>
+                </p>
+                <p class="text-success ml-2">{{i.view_count}} views</p>
+              </div>
+              <a href="{% url 'addtocart' i.pk %}" class="btn btn-primary"
+                >Add to cart</a
+              >
+              <a href="{% url 'details' i.pk %}" class="btn btn-primary"
+                >View</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <h1 class="text-center">No producs available for now, check later</h1>
+        {% endif %}
+      </div>
+    </div>
+    {% endblock %}
+
+    <section class="section2">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <div class="container bg-white text-dark py-2">
+            <h1 class="text-center">Why Shop With Us ?</h1>
+            <div class="box-wrap">
+              <div class="box">
+                <h6 class="">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quibusdam consectetur deleniti placeat nulla earum nemo quis
+                  unde magnam illum neque iure rerum repudiandae consequatur,
+                  eveniet, tenetur obcaecati dolore assumenda nostrum? Voluptas
+                  unde, architecto nulla, aspernatur expedita sapiente dolorum
+                </h6>
+              </div>
+              <div class="box">
+                <h6 class="">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quibusdam consectetur deleniti placeat nulla earum nemo quis
+                  unde magnam illum neque iure rerum repudiandae consequatur,
+                  eveniet, tenetur obcaecati dolore assumenda nostrum? Voluptas
+                  unde, architecto nulla, aspernatur expedita sapiente dolorum
+                </h6>
+              </div>
+              <div class="box">
+                <h6 class="">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quibusdam consectetur deleniti placeat nulla earum nemo quis
+                  unde magnam illum neque iure rerum repudiandae consequatur,
+                  eveniet, tenetur obcaecati dolore assumenda nostrum? Voluptas
+                  unde, architecto nulla, aspernatur expedita sapiente dolorum
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="img-container">
+            <img
+              src="{% static 'image/little.png' %}"
+              alt="sorry oh"
+              srcset=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section3">
+      <div class="section3-text">
+        <div class="text-center">Our Honourable Patners</div>
+        <span> <div class="circle"></div> </span>
+      </div>
+
+      <div class="section3-text2 text-center p-3">
+        <p class="d-flex align-items-center justify-content-center">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+          fugiat temporibus error debitis, repellendus deleniti. Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Quos quae provident
+          praesentium!
+        </p>
+      </div>
+
+      <div class="section3-wrapper">
+        <div class="boxs box1"></div>
+        <div class="boxs box2"></div>
+
+        <div class="boxs box3"></div>
+        <div class="boxs box4"></div>
+        <div class="boxs box5"></div>
+        <div class="boxs box6"></div>
+        <div class="boxs box7"></div>
+        <div class="boxs box8"></div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-box1">
+        <h4>Our Belief</h4>
+        <p class="">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+          iste explicabo ea assumenda, temporibus harum ipsum, inventore
+          tenetur, at maiores consequatur! Quas minus quisquam aspernatur cumque
+          voluptate eaque dolores placeat. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Aut asperiores, quod assumenda itaque
+          eaque fuga. Id beatae autem sint debitis exercitationem necessitatibus
+          veniam dignissimos? Omnis nemo amet itaque dignissimos blanditiis?
+        </p>
+      </div>
+      <div class="footer-box2">
+        <div class="box2-mini">
+          <ul>
+            <li>Accessories</li>
+            <li>Kitchen Utensils</li>
+            <li>Furnitures</li>
+            <li>Books</li>
+            <li>Wristwatches</li>
+            <li>Visa Applications</li>
+            <li>Banners</li>
+            <li>Housing</li>
+            <li>Tickets</li>
+            <li>Phones</li>
+
+            <li>Smartphones</li>
+          </ul>
+        </div>
+        <div class="box2-mini2">
+          <ul>
+            <li>Food</li>
+            <li>Palm Slippers</li>
+            <li>High Hills</li>
+            <li>Sneakers</li>
+            <li>Hoodies</li>
+            <li>Shoes</li>
+            <li>Shorts</li>
+            <li>Shirts</li>
+            <li>Skirts</li>
+            <li>Rings</li>
+            <li>Caps</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-box3">
+        <form method="POST">
+          <div class="col d-flex">
+            <input
+              type="text"
+              class="form-control mr-1"
+              name="search"
+              id="search"
+            />
+            <button class="btn btn-success">Search</button>
+          </div>
+        </form>
+      </div>
+    </footer>
+  </body>
+</html>
