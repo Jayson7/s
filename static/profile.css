@@ -85,6 +85,10 @@ body {
     word-break: break-all;
 }
 
+.details span {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 860px) {
     .wrapper-pic {
         margin-top: 40px;
