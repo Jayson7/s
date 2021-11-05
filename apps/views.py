@@ -273,6 +273,8 @@ def profilepage(request):
     context['check'] = check
     return render(request, 'profile.html', context )
 
+
+@login_required(login_url='/login/')
 def updateprofile(request):
     forms = CustomerProfileform()
     context = {}
@@ -291,8 +293,8 @@ def updateprofile(request):
             messages.error(request, 'WTF!')
             context['errors'] = forms.errors 
             print("you have started again abi")
-            
-    return render(request, 'updateprofile.html', {"forms":forms})
+            context["forms"] = forms
+    return render(request, 'updateprofile.html', context)
 
 
 

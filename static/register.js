@@ -4,7 +4,7 @@
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.querySelector("#myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -12,6 +12,7 @@ var span = document.getElementsByClassName("close")[0];
 button = document.getElementById("u");
 
 // When the user activates the modal
+
 var error = btn.innerHTML.search("WTF");
 var success = btn.innerHTML.search(
     "Your account has been created successfully!"
@@ -22,6 +23,8 @@ if (error) {
 if (success) {
     modal.style.display = "block";
 }
+
+// ends
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -34,5 +37,3 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
-
-// ends

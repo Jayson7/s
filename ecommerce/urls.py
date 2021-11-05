@@ -18,6 +18,8 @@ urlpatterns = [
     path('deletcart/<int:pk>', views.deletecart, name="deletecart"),
     path('clear', views.clearcart, name="clearcart"),
     path('profile', views.profilepage, name="profile"),
+    path('update', views.updateprofile, name="update"),
+    
     
     
     
