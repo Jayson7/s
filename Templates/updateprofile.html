@@ -93,7 +93,7 @@
 
     <div class="register">
       <div class="reg-wrapper">
-        <h3 class="text-center mb-2">Create An Account</h3>
+        <h3 class="text-center mb-2">Update Your Account</h3>
         <form
           enctype="multipart/form-data"
           method="post"
@@ -102,32 +102,32 @@
         >
           <div class="form-row row">
             <div id="email" class="form-group col mb-0">
-              {{ formss.first_name|as_crispy_field }}
+              {{ forms. |as_crispy_field }}
             </div>
 
             <div class="form-group col mb-0">
-              {{ formss.last_name|as_crispy_field }}
+              {{ forms.last_name|as_crispy_field }}
             </div>
           </div>
           <div class="form-row row">
             <div class="form-group col mb-0">
-              {{ formss.email|as_crispy_field }}
+              {{ forms.email|as_crispy_field }}
             </div>
             <div class="form-group col mb-0">
-              {{ formss.phone_number|as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row row">
-            <div class="form-group col mb-0">
-              {{ formss.username|as_crispy_field }}
+              {{ forms.phone_number|as_crispy_field }}
             </div>
           </div>
           <div class="form-row row">
             <div class="form-group col mb-0">
-              {{ formss.password1|as_crispy_field }}
+              {{ forms.username|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row row">
+            <div class="form-group col mb-0">
+              {{ forms.password1|as_crispy_field }}
             </div>
             <div class="form-group col mb-0">
-              {{ formss.password2|as_crispy_field }}
+              {{ forms.password2|as_crispy_field }}
             </div>
           </div>
           {% csrf_token %}
@@ -145,7 +145,7 @@
           "
         >
           <div class="col-6">
-            Already own an Account?
+            Account Cant Update ?
             <a
               href="{% url 'login' %}"
               class="text-decoration-none"
