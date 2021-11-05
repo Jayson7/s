@@ -2,8 +2,9 @@
 from django import forms
 from django.db.models.base import Model
 from django import  forms
+from django.forms import fields
 from django.forms.models import ModelForm
-from .models import Contact
+from .models import Contact, CustomerProfile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -31,7 +32,11 @@ class UserForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2", "first_name", "last_name",   "phone_number" )
 
-            
+class CustomerProfileform(ModelForm):
+    
+    class Meta:
+        model = CustomerProfile
+        fields = ("delivery_phone_number","profile_image","address","closest_landmark","city","country","state","postal_code")            
 
         # def save(self, commit=True):
         #     user = super(UserForm, self).save(commit=False)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
 # Create your models here.
+import cloudinary
 from cloudinary.models import CloudinaryField
 
 
@@ -74,17 +75,34 @@ class Contact(models.Model):
            
         return str(self.first_name)
 
+countries_available = [
+    ("Nigeria", "Nigeria"),
+    ("Sudan", "Sudan"),
+    ("Congo", "Congo"),
+    ("Senegal", "Senegal"),
+    ("Algeria", "Algeria"),
+    ("Madascar", "Madascar"),
+    ("Gambia", "Gambia"),
+    ("Kenya", "Kenya"),
+    ("Benin Republic", "Benin Republic"),
+    ("Togo", "Togo"),
     
+]
 class CustomerProfile(models.Model):
     
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    phone_number = models.IntegerField()
-    email = models.EmailField()
-    file = CloudinaryField('image')
+    
+    delivery_phone_number = models.IntegerField()
+    
+    
+    profile_image = CloudinaryField('image')
     date_joined = models.DateField(auto_now_add=True)
-    username = models.CharField(max_length=300)
+    
     address = models.CharField(max_length = 500)
+    closest_landmark = models.CharField(max_length=300)
+    country = models.CharField(choices=countries_available, max_length=100)    
+    postal_code = models.PositiveIntegerField()
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
     
     def __str__(self):
            

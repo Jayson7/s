@@ -272,3 +272,27 @@ def profilepage(request):
     print(check)
     context['check'] = check
     return render(request, 'profile.html', context )
+
+def updateprofile(request):
+    forms = CustomerProfileform()
+    context = {}
+    if request.method== "POST":
+        
+        
+        forms = CustomerProfileform(request.POST)
+        
+        if forms.is_valid():
+               
+            new_forms = forms.save(commit=False)
+            new_forms.save()
+            messages.success(request, 'Your account has been created successfully!')
+        else:
+            print(forms.errors)
+            messages.error(request, 'WTF!')
+            context['errors'] = forms.errors 
+            print("you have started again abi")
+            
+    return render(request, 'updateprofile.html', {"forms":forms})
+
+
+
