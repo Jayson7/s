@@ -27,12 +27,12 @@ DEBUG = True
 
 
 if DEBUG == True:
-    
-     ALLOWED_HOSTS = ['shoperzs.herokuapp.com']
-else:
-    
     ALLOWED_HOSTS = []
-
+    
+elif DEBUG == False:
+    ALLOWED_HOSTS = ['shoperzs.herokuapp.com']
+else:
+    pass
 
 # Application definition
 
