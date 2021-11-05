@@ -126,6 +126,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+# image controller
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config( 
+  cloud_name = "jaytech", 
+  api_key = "279168237821868", 
+  api_secret = "VQAHpUEHyJfxhces1SiW5F8srEU",
+  secure = True
+)
+
+
 import os 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
 # Create your models here.
+from cloudinary.models import CloudinaryField
 
 
 class Categories(models.Model):
@@ -27,7 +28,7 @@ class Product(models.Model):
     main_price = models.PositiveIntegerField()
     discounted_price = models.PositiveIntegerField()
     view_count = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to="media/images")
+    file = CloudinaryField('image')
     
     # stringify output
     def __str__(self):
@@ -80,7 +81,7 @@ class CustomerProfile(models.Model):
     last_name = models.CharField(max_length=200)
     phone_number = models.IntegerField()
     email = models.EmailField()
-    picture = models.ImageField(upload_to='profile_pics')
+    file = CloudinaryField('image')
     date_joined = models.DateField(auto_now_add=True)
     username = models.CharField(max_length=300)
     address = models.CharField(max_length = 500)
