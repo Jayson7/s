@@ -101,15 +101,10 @@
     <div class="register">
       <div class="reg-wrapper">
         <h3 class="text-center mb-2">Update Your Account</h3>
-        <form
-          enctype="multipart/form-data"
-          method="post"
-          class="text-dark"
-          method="POST"
-        >
+        <form enctype="multipart/form-data" class="text-dark" method="POST">
           <div class="form-row row">
             <div id="email" class="form-group col mb-0">
-              {{ forms.profile_image |as_crispy_field }}
+              {{ forms.profile_image|as_crispy_field }}
             </div>
 
             <div class="form-group col mb-0">
@@ -127,6 +122,9 @@
           <div class="form-row row">
             <div class="form-group col mb-0">
               {{ forms.postal_code |as_crispy_field }}
+            </div>
+            <div class="form-group col mb-0">
+              {{ forms.address |as_crispy_field }}
             </div>
           </div>
           <div class="form-row row">

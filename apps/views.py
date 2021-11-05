@@ -281,7 +281,7 @@ def updateprofile(request):
     if request.method== "POST":
         
         
-        forms = CustomerProfileform(request.POST)
+        forms = CustomerProfileform(request.POST, request.FILES)
         
         if forms.is_valid():
                
@@ -293,7 +293,7 @@ def updateprofile(request):
             messages.error(request, 'WTF!')
             context['errors'] = forms.errors 
             print("you have started again abi")
-            context["forms"] = forms
+    context["forms"] = forms
     return render(request, 'updateprofile.html', context)
 
 

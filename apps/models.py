@@ -93,7 +93,7 @@ class CustomerProfile(models.Model):
     
     delivery_phone_number = models.IntegerField()
     
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile_image = CloudinaryField('image')
     date_joined = models.DateField(auto_now_add=True)
     
